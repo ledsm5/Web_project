@@ -62,7 +62,19 @@ public class EmployeeController extends HttpServlet
 			action.employeeDetail(request);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("employee/empUpdate.jsp");
 			dispatcher.forward(request, response);
+		}else if(command.equals("/empUpdateOk.em")) {
+			EmployeeUpdatePage action = new EmployeeUpdatePage();
+			action.employeeUpdate(request);
+			int i =action.employeeUpdate(request);
+			if(i==1) {
+				response.sendRedirect("/empUpdate.em");
+			}else {
+				response.sendRedirect("/empModifyOk.em");
+			}
 		}
+		
+		
+		
 	}
 	
 	

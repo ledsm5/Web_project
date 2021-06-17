@@ -34,9 +34,32 @@ public class EmployeeDAO {
 	
 	
 	
+	
+	public void empMod(EmployeeDTO dto) {
+		sql = "update employees set  EMP_USERID=?,HIRE_DATE=? ,JOB_ID=?, PH_NUMBER=?, EMP_ADDRESS=?,EMP_PW=? where EMPLOYEE_ID=?";
+		getConnect();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getEmpUserid());
+			pstmt.setString(2, dto.getHireDate());
+			pstmt.setString(3, dto.getJobId());
+			pstmt.setString(4, dto.getPhNumber());
+			pstmt.setString(5, dto.getEmpAddress() );
+			pstmt.setString(6, dto.getEmpPw());
+			pstmt.setString(7, dto.getEmployeeId());
+			int i =pstmt.executeUpdate();
+			System.out.println(i+"개가 수정되었습니다");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
+	}
+	
 	public EmployeeDTO empDetail(String empId) {
 		EmployeeDTO dto = new EmployeeDTO();
-		sql = "select " + COLUMNS + " from employees where EMPLOYEE_ID=?";
+		sql = "select " + COLUMNS + " from employees where EMP_USERID=?";
 		getConnect();
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -52,7 +75,7 @@ public class EmployeeDAO {
 				dto.setJobId(rs.getString("JOB_ID"));
 				dto.setOfficeNumber(rs.getString("OFFICE_NUMBER"));
 				dto.setPhNumber(rs.getString("PH_NUMBER"));
-				
+				dto.setEmpPw(rs.getString("EMP_PW"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -75,7 +98,6 @@ public class EmployeeDAO {
 		}finally {
 			close();
 		}
-		
 	}
 	public void empUpdate(EmployeeDTO dto) {
 		sql = " update employees  set JOB_ID = ?, PH_NUMBER=?, OFFICE_NUMBER =?, EMAIL = ?, EMP_ADDRESS = ?  where employee_id = ?";
