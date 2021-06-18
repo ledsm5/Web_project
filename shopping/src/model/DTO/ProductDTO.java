@@ -10,7 +10,7 @@ public class ProductDTO {
 	String prodSupplyer;
 	String ctgr;
 	String prodDelFee;
-	String recommand;
+	String recommend;
 	String employeeId;
 	
 	public String getCtgr() {
@@ -67,11 +67,12 @@ public class ProductDTO {
 	public void setProdDelFee(String prodDelFee) {
 		this.prodDelFee = prodDelFee;
 	}
-	public String getRecommand() {
-		return recommand;
+
+	public String getRecommend() {
+		return recommend;
 	}
-	public void setRecommand(String recommand) {
-		this.recommand = recommand;
+	public void setRecommend(String recommend) {
+		this.recommend = recommend;
 	}
 	public String getEmployeeId() {
 		return employeeId;

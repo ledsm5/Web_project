@@ -18,7 +18,7 @@
 					<option value="food">음식</option>
 					<option value="bj">bj</option>
 				</select>
-				<input type ="text" name="goodsNum" value="${goodsNum }">
+				<input type ="text" name="goodsNum" value="${goodsNum }" readonly="readonly">
 				</td>
 			</tr>
 			<tr>
@@ -44,8 +44,8 @@
 			<tr>
 				<th>추천여부</th>
 				<td>
-					<input type ="radio" name="recommand" value="Y">추천
-					<input type ="radio" name="recommand" value="N">비추
+					<input type ="radio" name="recommend" value="Y" checked>추천
+					<input type ="radio" name="recommend" value="N">비추
 				</td>
 			</tr>
 			<tr>

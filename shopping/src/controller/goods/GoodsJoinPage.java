@@ -45,7 +45,7 @@ public class GoodsJoinPage {
 		dto.setProdSupplyer(multi.getParameter("prodSupplyer"));
 		dto.setProdNum(multi.getParameter("goodsNum"));
 		dto.setProdPrice(Integer.parseInt((multi.getParameter("prodPrice"))));
-		dto.setRecommand(multi.getParameter("recommand"));
+		dto.setRecommend(multi.getParameter("recommend"));
 		dto.setCtgr(multi.getParameter("ctgr"));
 		GoodsDAO dao = new GoodsDAO();
 		dao.prodInsert(dto);

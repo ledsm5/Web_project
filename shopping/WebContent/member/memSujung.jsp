@@ -61,8 +61,7 @@
 </script>
 </head>
 <body>
-<form action="memModifyOk.mem" method="post" name="frm"> 
-<input type = "hidden" name= "memId" value="${dto.memId }">
+<form action="memSujungOk.mem" method="post" name="frm"> 
 	<table border = 1 align="center">
 		<tr>
 			<td>아이디</td>

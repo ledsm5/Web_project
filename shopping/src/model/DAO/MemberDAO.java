@@ -69,11 +69,15 @@ public class MemberDAO {
 	}
 	
 	
-	public void memUpdate(MemberDTO dto) {  //MemberModifyPage 에서 dao로 보내는
-		sql = "update member set POST_NUMBER=?,MEM_ADDRESS=?,DETAIL_ADD=?,MEM_EMAIL=?,MEM_EMAIL_CK=?,MEM_ACCOUNT=?,MEM_PHONE=?,MEM_BIRTH=? where MEM_ID=?";
+	public void memUpdate(MemberDTO dto) {
+		sql = " update  member set  POST_NUMBER =? , MEM_ADDRESS = ? ,"
+			+ "      DETAIL_ADD = ? , MEM_EMAIL = ? ,"
+			+ "      MEM_EMAIL_CK = ?, MEM_ACCOUNT = ? ,"
+			+ "      MEM_PHONE = ?, MEM_BIRTH = ? "
+			+ " where mem_id = ?" ; 
 		getConnect();
 		try {
-			pstmt =conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getPostNumber());
 			pstmt.setString(2, dto.getMemAddress());
 			pstmt.setString(3, dto.getDetailAdd());
@@ -85,7 +89,7 @@ public class MemberDAO {
 			pstmt.setDate(8, new Date(birth));
 			pstmt.setString(9, dto.getMemId());
 			int i = pstmt.executeUpdate();
-			System.out.println(i + "개가 수정되었습니다 ");
+			System.out.println(i + "개행이 수정되었습니다.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

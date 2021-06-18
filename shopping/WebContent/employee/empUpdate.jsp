@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="empUpdateOk.em"  method="post" name="frm">
+	<form action="empUpdateOk.em" method="post" name="frm"> 
 		<table border =1>
 			<tr><td>사원번호: </td><td> <input type="text" name="employeeId" value ="${dto.employeeId }"></td></tr> 
 			<tr><td>아이디: </td><td> <input type="text" name="empUserId" value ="${dto.empUserid }"></td></tr>

@@ -1,11 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix ="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+	function goodsBuy(prodNum){
+		if(${authInfo == null}){
+			alert("로그인을 하셔야 합니다");
+			return false;
+		}else {
+			location.href='prodInfo.gd?prodNum=' + prodNum;
+		}
+	}
+</script>
 </head>
 <body>
 <!-- 로그인 안되었을 때  -->
@@ -38,6 +48,7 @@
 	<c:if test="${authInfo.grade ==1}">
 		<!-- 일반 회원 -->
 			<a href="myPage.mem">마이페이지</a>
+			<a href="goodsCartList.gd"> 장바구나</a>
 	</c:if>
 	<c:if test="${authInfo.grade !=1 }">
 		<!-- 관리자 -->
@@ -51,6 +62,23 @@
 			</c:if>
 				<a href="myPage.em">마이페이지</a> 
 	</c:if>
+	<a href ="logout.sm"> 로그아웃 </a>
 </c:if>
+
+<!-- 상품리스트 -->
+
+<table align="center">
+	<tr>
+	<c:forEach items ="${lists }" var="dto" varStatus="cnt">
+		<td><a href="javascript:gooodsBuy('$dto.prodNum')"><img width="200" height="200" src="goods/upload/${dto.prodImage.split(',')[0] }"><br>
+			${dto.prodName } <br>
+			가격:<fmt:formatNumber value="${dto.prodPrice }" type="currency"/> <br>
+		</a></td>
+		<c:if test="${cnt.count % 3 == 0}">
+		</tr><tr>
+		</c:if>
+	</c:forEach>
+	</tr>
+</table>
 </body>
 </html>

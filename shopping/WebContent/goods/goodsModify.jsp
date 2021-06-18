@@ -36,11 +36,10 @@
 				<td><input type ="number" name="prodDelFee" min="0" step="1" value="${dto.prodDelFee }"></td>
 			</tr>
 			<tr>
-			
 				<th>추천여부</th>
 				<td>
-					<input type ="radio" name="recommand" value="Y" <c:if test="${dto.recommand.trim() == 'Y' }">checked</c:if> >추천
-					<input type ="radio" name="recommand" value="N" <c:if test="${dto.recommand.trim() == 'N' }">checked</c:if> >비추
+					<input type="radio" name="recommend" value="Y" <c:if test="${dto.recommend.trim() == 'Y' }">checked</c:if> />추천
+            		<input type="radio" name="recommend" value="N" <c:if test="${dto.recommend.trim() == 'N' }">checked</c:if> />비추천
 				</td>
 			</tr>
 			<tr>
@@ -48,14 +47,13 @@
 			</tr>
 			<tr>
 				<td colspan=2>
-					<input type="submit" value="상품등록">
+					<input type="submit" value="상품수정">
 					<input type="reset" value="취소" onclick="javascript:history.back();">
-					<input type="button" value="홈으로" onclick="javascript:location.href='main.sm.">
+					<input type="reset" value="식제" onclick="javascript:location.href='prodDel.gd?prodNum=${dto.prodNum }';">
+					<input type="button" value="홈으로" onclick="javascript:location.href='main.sm'"/> 
 				</td>
 			</tr>
 		</table>
-	
-	
 	</form>
 </body>
 </html>

@@ -22,7 +22,7 @@ public class GoodsUpdatePage {
 	      dto.setProdNum(request.getParameter("prodNum"));
 	      dto.setProdPrice(Integer.parseInt(request.getParameter("prodPrice")));
 	      dto.setProdSupplyer(request.getParameter("prodSupplyer"));
-	      dto.setRecommand(request.getParameter("recommand"));
+	      dto.setRecommend(request.getParameter("recommend"));
 
 		GoodsDAO dao= new GoodsDAO();
 		dao.goodsUpdate(dto);

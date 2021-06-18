@@ -7,11 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href ="empUpdate.em">내정보 수정	</a>|
-	<a href ="empPwChange.em">비밀번호 변경하기 </a>|
-	회원탈퇴 |
-	
-	
-	
+	<form action="empPwChangeOk.em" name="frm" method="post">
+	비밀번호 : <input type="password" name="empPw" />
+	<span>${pwFail1 }</span><br />
+	<input type="submit" value="확인" />
+</form>
 </body>
 </html>

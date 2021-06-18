@@ -75,11 +75,10 @@ public class MemberController extends HttpServlet implements Servlet {
 			dispatcher.forward(request, response);
 		}else if(command.equals("/memSujungOk.mem")) {
 			MemberUpdatePage action = new MemberUpdatePage();
-			action.memberUpdate(request);
-			int i = action.memberUpdate(request);
+			int i =action.memberUpdate(request);
 			if(i == 1) {
 				response.sendRedirect("memDetail.mem");
-			}else {
+			}else{
 				response.sendRedirect("memSujung.mem");
 			}
 		}else if(command.equals("/memOut.mem")) {

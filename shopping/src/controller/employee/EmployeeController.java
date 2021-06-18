@@ -11,8 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.member.MemberDetailPage;
 
-public class EmployeeController extends HttpServlet
-	implements Servlet{
+public class EmployeeController extends HttpServlet implements Servlet{
 	public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String RequestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
@@ -67,10 +66,16 @@ public class EmployeeController extends HttpServlet
 			action.employeeUpdate(request);
 			int i =action.employeeUpdate(request);
 			if(i==1) {
-				response.sendRedirect("/empUpdate.em");
+				response.sendRedirect("/myPage.em");
 			}else {
-				response.sendRedirect("/empModifyOk.em");
+				response.sendRedirect("/empUpdate.em");
 			}
+		}else if(command.equals("/empPwChange.em")){
+			RequestDispatcher dispatcher = request.getRequestDispatcher("employee/empPwChange.jsp");
+			dispatcher.forward(request, response);
+		}else if(command.equals("/empPwChangeOk.em")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("employee/empPwChangeOk.jsp");
+			dispatcher.forward(request, response);
 		}
 		
 		
