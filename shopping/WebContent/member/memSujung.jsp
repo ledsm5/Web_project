@@ -69,7 +69,7 @@
 		</tr>
 		<tr>
 			<td>비밀번호</td>
-			<td><input type ="password" name="memPw"><span>${pwFail }</span></td>
+			<td><input type ="password" name="memPw"><span>${pwFail }</span></td>  <!-- 비번은 디비로 부터 받오온게 아님   -->
 		</tr>
 		<tr>
 			<td>이름</td>

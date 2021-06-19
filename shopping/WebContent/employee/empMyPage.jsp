@@ -10,6 +10,7 @@
 	<a href ="empUpdate.em">내정보 수정	</a>|
 	<a href ="empPwChange.em">비밀번호 변경하기 </a>|
 	회원탈퇴 |
+	<a href ="logout.sm">로그아웃 </a>
 	
 	
 	

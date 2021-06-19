@@ -69,7 +69,7 @@ public class MemberDAO {
 	}
 	
 	
-	public void memUpdate(MemberDTO dto) {
+	public void memUpdate(MemberDTO dto) {   // 웹페이지로 부터 데이터를 받아와서 DTO를 통해서 DB에 데이터를 저장한다 .
 		sql = " update  member set  POST_NUMBER =? , MEM_ADDRESS = ? ,"
 			+ "      DETAIL_ADD = ? , MEM_EMAIL = ? ,"
 			+ "      MEM_EMAIL_CK = ?, MEM_ACCOUNT = ? ,"
@@ -104,7 +104,7 @@ public class MemberDAO {
 	Statement ~~~~~   ==> 시스템 성능에 안좋아서 요즘 안쓴다
 	 ==> 모든프레임워크가 prepareStatement를사용 (?) 를통해서 사용한다 */  
 	
-	public MemberDTO memDetail(String memId) {
+	public MemberDTO memDetail(String memId) {   //DB로부터 데이터 받아와서 DTO를 통해 DETAIL 페이지에 출력한다 
 		MemberDTO dto = new MemberDTO();
 		sql = "select " + COLUMNS +  " from member where mem_id = ?"; 
 		getConnect();

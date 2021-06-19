@@ -25,63 +25,70 @@ public class GoodsDAO extends DataBaseInfo{
 	         close();
 	      }
 	   }
+	 
+	 
 	
 	 public List cartList(String memId) {
-		List list = new ArrayList();
-		sql=" select p.PROD_NUM , PROD_SUPPLYER, PROD_DEL_FEE, PROD_IMAGE, PROD_NAME, PROD_PRICE,CART_PRICE,CART_QTY "
-	        + " from products p, cart c "
-	        + " where p.PROD_NUM = c.prod_num and c.mem_id = ? ";
-		getConnect();
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memId);
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
-	            ProductCartDTO dto=new ProductCartDTO();
-	            dto.setCartDTO(new CartDTO());
-	            dto.setProductDTO(new ProductDTO());
-	            dto.getCartDTO().setCartPrice(rs.getInt("CART_PRICE"));
-	            dto.getCartDTO().setCartQty(rs.getString("CART_QTY"));
-	            
-	            dto.getProductDTO().setProdSupplyer(rs.getString("PROD_SUPPLYER"));
-	            dto.getProductDTO().setProdDelFee(rs.getString("PROD_DEL_FEE"));
-	            dto.getProductDTO().setProdImage(rs.getString("PROD_IMAGE"));
-	            dto.getProductDTO().setProdName(rs.getString("PROD_NAME"));
-	            dto.getProductDTO().setProdPrice(rs.getInt("PROD_PRICE"));
-	            list.add(dto);
-				
+			List list = new ArrayList();
+			sql = "select p.PROD_NUM , PROD_SUPPLYER, PROD_DEL_FEE,"
+				+ "  PROD_IMAGE, PROD_NAME ,PROD_PRICE," 
+				+ "        CART_PRICE, CART_QTY" 
+				+ " from products p, cart c" 
+				+ " where p.PROD_NUM = c.prod_num and c.mem_id = ?";
+			getConnect();
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, memId);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					ProductCartDTO dto = new ProductCartDTO();
+					dto.setCartDTO(new CartDTO());
+					dto.setProductDTO(new ProductDTO());
+					dto.getCartDTO().setCartPrice(rs.getInt("CART_PRICE"));
+					dto.getCartDTO().setCartQty(rs.getString("cart_Qty"));
+					dto.getProductDTO().setProdDelFee(rs.getString("prod_Del_Fee"));
+					dto.getProductDTO().setProdImage(rs.getString("prod_Image"));
+					dto.getProductDTO().setProdName(rs.getString("prod_Name"));
+					dto.getProductDTO().setProdPrice(rs.getInt("prod_Price"));
+					dto.getProductDTO().setProdSupplyer(rs.getString("prod_Supplyer"));
+					list.add(dto);				
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+			return list;
 		}
-		return list;
-		
-	 }
+	 
+	 
 	 
 	 public void cartInsert(CartDTO dto) {
-		 sql = "merge into cart as c using (select prod_num from products where prod_num =? ) as p "   //
-		 		+ " on (c.prod_num = p.prod_num and c.mem_id = ? ) "								   //
-		 		+ " when MATCHED THEN update set cart_qty = cart_qty + ? , cart_price = cart_price + ? "
-		 		+ " when not matched then insert(c.MEM_ID, c.PROD_NUM, c.CART_QTY, c.CART_PRICE) values(?,?,?,?)";
-		 getConnect();
-		 try {
-			 pstmt= conn.prepareStatement(sql);
-			 pstmt.setString(1, dto.getProdNum());
-			 pstmt.setString(2, dto.getMemId());
-			 pstmt.setString(3, dto.getCartQty());
-			 pstmt.setInt(4, dto.getCartPrice());
-			 pstmt.setString(5, dto.getMemId());
-			 pstmt.setString(6, dto.getProdNum());
-			 pstmt.setString(7, dto.getCartQty());
-			 pstmt.setInt(8, dto.getCartPrice());
-			int i = pstmt.executeUpdate();
-			System.out.println(i +"개가 저장되었습니다");
-		} catch (SQLException e) {
-			e.printStackTrace();
+		 sql = " MERGE INTO CART c USING ( SELECT PROD_NUM FROM PRODUCTS WHERE PROD_NUM = ? ) p "
+					+ " ON ( c.PROD_NUM = p.PROD_NUM AND c.MEM_ID = ? ) "
+					+ " WHEN MATCHED THEN UPDATE SET CART_QTY = CART_QTY + ? , "
+					+ " CART_PRICE = CART_PRICE + ? "
+					+ " WHEN NOT MATCHED THEN "
+					+ " INSERT (c.MEM_ID, c.PROD_NUM, c.CART_QTY, c.CART_PRICE) " + " VALUES(?, ?, ?, ?) ";
+			getConnect();
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, dto.getProdNum());
+				pstmt.setString(2, dto.getMemId());
+				pstmt.setString(3, dto.getCartQty());
+				pstmt.setInt(4, dto.getCartPrice());
+				pstmt.setString(5, dto.getMemId());
+				pstmt.setString(6, dto.getProdNum());
+				pstmt.setString(7, dto.getCartQty());
+				pstmt.setInt(8, dto.getCartPrice());
+				int i = pstmt.executeUpdate();
+				System.out.println(i+"개 행이 저장되었습니다 .");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close();
+			}
+			
+
 		}
-	
-		 
-	 }
 	 
 	public void goodsUpdate(ProductDTO dto) {
 		sql = " update products "

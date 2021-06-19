@@ -15,8 +15,8 @@ public class EmployeeController extends HttpServlet implements Servlet{
 	public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String RequestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
-		String command = RequestURI.substring(
-				contextPath.length());
+		String command = RequestURI.substring(contextPath.length());
+		
 		if(command.equals("/empList.em")) {
 			EmployeeListPage action = new EmployeeListPage();
 			action.empList(request);
@@ -51,6 +51,7 @@ public class EmployeeController extends HttpServlet implements Servlet{
 			response.sendRedirect("empList.em");
 			
 			
+		// 	==============  직원 마이페이지  =============== 
 			
 			
 		}else if(command.equals("/myPage.em")) {

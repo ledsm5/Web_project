@@ -12,15 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import controller.goods.GoodsListPage;
 
-public class MainController extends HttpServlet 
-	implements Servlet{
-	public void doProcess(HttpServletRequest request, 
-			HttpServletResponse response) 
-					throws ServletException, IOException {
+public class MainController extends HttpServlet implements Servlet{
+	public void doProcess(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {
 		String RequestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
-		String command = RequestURI.substring(
-				contextPath.length());
+		String command = RequestURI.substring(contextPath.length());
 		/// uri = /shopping/index.html
 		///       0123456789
 		/// context = /shopping
@@ -28,8 +24,7 @@ public class MainController extends HttpServlet
 		if(command.equals("/main.sm")) {
 			GoodsListPage action = new GoodsListPage();
 			action.goodsList(request);
-			RequestDispatcher dispatcher =
-					request.getRequestDispatcher("main/home.jsp");
+			RequestDispatcher dispatcher =request.getRequestDispatcher("main/home.jsp");
 			dispatcher.forward(request, response);
 		}else if(command.equals("/login.sm")) {
 			LoginPage action = new LoginPage();
@@ -42,8 +37,7 @@ public class MainController extends HttpServlet
 		}
 	}
 	@Override
-	protected void doGet(HttpServletRequest req, 
-			HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doProcess(req,resp);
 	}
 	@Override

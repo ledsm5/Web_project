@@ -36,7 +36,7 @@ public class EmployeeDAO {
 	
 	
 	public void empMod(EmployeeDTO dto) {
-		sql = "update employees set  EMP_USERID=?,HIRE_DATE=? ,JOB_ID=?, PH_NUMBER=?, EMP_ADDRESS=?,EMP_PW=? where EMPLOYEE_ID=?";
+		sql = "update employees set  EMP_USERID=?,HIRE_DATE=? ,JOB_ID=?, PH_NUMBER=?, EMP_ADDRESS=?,EMP_PW=? where EMP_USERID=?";
 		getConnect();
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -46,7 +46,6 @@ public class EmployeeDAO {
 			pstmt.setString(4, dto.getPhNumber());
 			pstmt.setString(5, dto.getEmpAddress() );
 			pstmt.setString(6, dto.getEmpPw());
-			pstmt.setString(7, dto.getEmployeeId());
 			int i =pstmt.executeUpdate();
 			System.out.println(i+"개가 수정되었습니다");
 		} catch (SQLException e) {

@@ -61,16 +61,15 @@ public class MemberController extends HttpServlet implements Servlet {
 			
 		}else if(command.equals("/myPage.mem")) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("member/memMypage.jsp");
-			dispatcher.forward(request, response);
-			
+			dispatcher.forward(request, response);		
 		}else if(command.equals("/memDetail.mem")) {
 			MemberDetailPage action = new MemberDetailPage();
 			action.memberDetail(request);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("member/memDetail.jsp");
 			dispatcher.forward(request, response);
 		}else if(command.equals("/memSujung.mem")) { // 내가수정할때는 비밀번호를 물어봐야겠지?
-			MemberDetailPage action = new MemberDetailPage(); //위에서 만든것과 같으 복붙
-			action.memberDetail(request);
+			MemberDetailPage action = new MemberDetailPage(); 				// memDetail.mem &  memSujung.mem 이 같은 java페이지를 쓰는이
+			action.memberDetail(request);									// 세션의 데이터를 디비로 부터  받아오는게 똑같기 때문 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("member/memSujung.jsp");
 			dispatcher.forward(request, response);
 		}else if(command.equals("/memSujungOk.mem")) {

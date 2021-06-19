@@ -14,15 +14,13 @@ public class EmployeeUpdatePage {
 			HttpSession session = request.getSession();
 			AuthInfo authInfo = (AuthInfo)session.getAttribute("AuthInfo");
 			EmployeeDTO dto = new EmployeeDTO();
-				
-				dto.setEmpUserid(request.getParameter("empUserid"));
 				dto.setHireDate(request.getParameter("hireDate"));
 				dto.setJobId(request.getParameter("jobId"));
 				dto.setPhNumber(request.getParameter("phNumber"));
 				dto.setEmail(request.getParameter("email"));
 				dto.setEmpAddress(request.getParameter("empAddress"));
 				dto.setEmpPw(request.getParameter("empPw"));
-				dto.setEmpUserid(authInfo.getUserId());
+				dto.setEmpUserid(authInfo.getUserId());		
 				if(request.getParameter("empPw").equals(authInfo.getUserPw())) {
 					EmployeeDAO dao = new EmployeeDAO();
 					dao.empMod(dto);
