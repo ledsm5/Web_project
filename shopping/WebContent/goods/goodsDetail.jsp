@@ -35,7 +35,7 @@ function goodsCartAdd(prodNum){
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${dto.prodPrice }</td></tr>
 		<tr><td align = "right" >총 상품금액&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span id="tot">${dto.prodPrice }</span></td></tr>
 		<tr><td align="right">
-				<input type="button" value="장바구니" onclick = "goodsCartAdd('${dto.prodNum }');"	/>
+				<input type="button" value="장바구니에 담기" onclick = "goodsCartAdd('${dto.prodNum }');"	/>
 				<input type="submit" value="바로구매" > 	
 			</td>
 		</tr>

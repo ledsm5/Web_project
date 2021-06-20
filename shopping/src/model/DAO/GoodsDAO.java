@@ -120,10 +120,10 @@ public class GoodsDAO extends DataBaseInfo{
 	public ProductDTO GoodsOne(String prodNum) {
 		ProductDTO dto = null;
 		sql = "select " + COLUMNS +", "
-			+ " case CTGR when 'wear' then '의류' "
-			+ "			  when 'entertainer' then '연예인' "
-			+ "           when 'food' then '음식' "
-			+ "			  when 'bj' then 'bj' " 
+			+ " case CTGR when 'premierleague' then '프리미어리그' "
+			+ "			  when 'laliga' then '라리가' "
+			+ "           when 'intenatioal' then '국가대표' "
+			+ "			  when 'etc' then '기타' " 
 			+ "           end CTGR1 "
 			+ " from products "
 			+ " where PROD_NUM = ?";

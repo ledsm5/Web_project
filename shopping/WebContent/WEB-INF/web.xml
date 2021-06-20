@@ -49,4 +49,13 @@
 		<servlet-name>goods</servlet-name>
 		<url-pattern>*.gd</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>notice</servlet-name>
+		<servlet-class>controller.notice.NoticeController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>notice</servlet-name>
+		<url-pattern>*.nt</url-pattern>
+	</servlet-mapping>
 </web-app>

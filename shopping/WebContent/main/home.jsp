@@ -48,13 +48,13 @@ function goodsBuy(prodNum){
 	<c:if test="${authInfo.grade ==1}">
 		<!-- 일반 회원 -->
 			<a href="myPage.mem">마이페이지</a>
-			<a href="goodsCartList.gd"> 장바구나</a>
+			<a href="goodsCartList.gd"> 장바구니</a>
+			<a href="noticeMain.nt">공지사항</a>
 	</c:if>
 	<c:if test="${authInfo.grade !=1 }">
 		<!-- 관리자 -->
 		<a href="goodsList.gd">상품등록</a>
 			<!-- 직원 -->
-			공지사항
 			<c:if test="${authInfo.userId ==111 }">
 				<a href="empList.em">직원 리스트</a>
 				<a href="memList.mem">회원 리스트</a>
