@@ -64,19 +64,40 @@ public class EmployeeController extends HttpServlet implements Servlet{
 			dispatcher.forward(request, response);
 		}else if(command.equals("/empUpdateOk.em")) {
 			EmployeeUpdatePage action = new EmployeeUpdatePage();
-			action.employeeUpdate(request);
 			int i =action.employeeUpdate(request);
 			if(i==1) {
-				response.sendRedirect("/myPage.em");
+				response.sendRedirect("myPage.em");
 			}else {
-				response.sendRedirect("/empUpdate.em");
+				response.sendRedirect("empUpdate.em");
 			}
 		}else if(command.equals("/empPwChange.em")){
 			RequestDispatcher dispatcher = request.getRequestDispatcher("employee/empPwChange.jsp");
 			dispatcher.forward(request, response);
 		}else if(command.equals("/empPwChangeOk.em")) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("employee/empPwChangeOk.jsp");
+			EmployeePwConfirmPage action = new EmployeePwConfirmPage();
+			String path = action.pwConfirm(request);
+			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
+		}else if(command.equals("/changePw.em")) {
+			EmployeePwChangeAction action = new EmployeePwChangeAction();
+			int i  = action.pwChangeAction(request);
+			if(i == 1) {
+				response.sendRedirect("main.sm");
+			}else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("employee/empPwChange.jsp");
+				dispatcher.forward(request, response);
+			}
+		}else if(command.equals("/empDropOut.em")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("employee/empDropOut.jsp");
+			dispatcher.forward(request, response);
+		}else if(command.equals("/empDropOutAction.em")) {
+			EmployeeDropOutAction action = new EmployeeDropOutAction();
+			int i = action.empDropOut(request);
+			if(i==1) {
+				response.sendRedirect("main.sm");
+			}else {
+				response.sendRedirect("empDropOut.em");
+			}
 		}
 		
 		

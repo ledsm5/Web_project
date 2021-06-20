@@ -35,19 +35,58 @@ public class EmployeeDAO {
 	
 	
 	
-	public void empMod(EmployeeDTO dto) {
-		sql = "update employees set  EMP_USERID=?,HIRE_DATE=? ,JOB_ID=?, PH_NUMBER=?, EMP_ADDRESS=?,EMP_PW=? where EMP_USERID=?";
+	public void empDelete2(String empUserid) {
+		sql="delete from employees where EMP_USERID=?";
 		getConnect();
+		
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getEmpUserid());
-			pstmt.setString(2, dto.getHireDate());
-			pstmt.setString(3, dto.getJobId());
-			pstmt.setString(4, dto.getPhNumber());
-			pstmt.setString(5, dto.getEmpAddress() );
-			pstmt.setString(6, dto.getEmpPw());
+			pstmt.setString(1, empUserid);
+			
 			int i =pstmt.executeUpdate();
-			System.out.println(i+"개가 수정되었습니다");
+			System.out.println(i+"개컬럼이 삭제 되었습니다");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
+	}
+	
+	
+	public void empPwChange(String empUserid , String empPw) {
+		
+		sql = " UPDATE EMPLOYEES SET EMP_PW = ? WHERE EMP_USERID = ?";
+		getConnect();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, empPw);
+			pstmt.setString(2, empUserid);
+			int i = pstmt.executeUpdate();
+			System.out.println(i + "개가 변경되었습니다");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+	}
+	
+	
+	public void empMod(EmployeeDTO dto) {
+		sql = "update employees set JOB_ID=?, PH_NUMBER=?,EMAIL=?, EMP_ADDRESS=?,EMP_PW=? where EMP_USERID=?";
+		getConnect();
+		try {
+			pstmt=conn.prepareStatement(sql);;
+			pstmt.setString(1, dto.getJobId());
+			pstmt.setString(2, dto.getPhNumber());
+			pstmt.setString(3, dto.getEmpAddress() );
+			pstmt.setString(4, dto.getEmail());
+			pstmt.setString(5, dto.getEmpPw());
+			pstmt.setString(6, dto.getEmpUserid());
+			int i =pstmt.executeUpdate();
+			System.out.println("sql query" + sql);
+			System.out.println(i + "개가 수정되었습니다");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

@@ -12,13 +12,12 @@ import model.DTO.EmployeeDTO;
 public class EmployeeUpdatePage {
 		public Integer employeeUpdate(HttpServletRequest request) {
 			HttpSession session = request.getSession();
-			AuthInfo authInfo = (AuthInfo)session.getAttribute("AuthInfo");
+			AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 			EmployeeDTO dto = new EmployeeDTO();
-				dto.setHireDate(request.getParameter("hireDate"));
 				dto.setJobId(request.getParameter("jobId"));
 				dto.setPhNumber(request.getParameter("phNumber"));
-				dto.setEmail(request.getParameter("email"));
 				dto.setEmpAddress(request.getParameter("empAddress"));
+				dto.setEmail(request.getParameter("email"));
 				dto.setEmpPw(request.getParameter("empPw"));
 				dto.setEmpUserid(authInfo.getUserId());		
 				if(request.getParameter("empPw").equals(authInfo.getUserPw())) {

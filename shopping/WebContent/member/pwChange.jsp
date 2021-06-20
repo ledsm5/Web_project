@@ -9,7 +9,7 @@
 <body>
 	<form action="pwChangeOk.mem" name="frm" method="post">
 		비밀번호 : 
-		<input type="password" name="memPw"><span>${pwFail1 }</span><br>
+		<input type="password" name="memPw"><span>${pwFail }</span><br>
 		<input type="submit" value="확인">
 	</form>
 </body>
