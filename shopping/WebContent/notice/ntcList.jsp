@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 	공지사항 페이지 입니다 
 	<table border=1 width="600" align="center">
 		<caption>* 공지사항 *</caption> 
-			<tr><th><a >게시글번호</a></th><td>제목</td><td>등록일</<td>조회수</td></tr>
+			<tr><th>게시글번호</th><td>제목</td><td>등록일</td><td>조회수</td></tr>
 			<c:forEach items="${lists }" var="dto">				
 				<tr>
 					<th><a href = "noticeDetail.nt?noticeNo = ${dto.noticeNo }">${dto.noticeNo }</a></th>

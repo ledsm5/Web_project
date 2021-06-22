@@ -15,24 +15,29 @@ import model.DTO.ProductDTO;
 public class GoodsJoinPage {
 	public void goodsJoin(HttpServletRequest request) {
 		String filePath = "goods/upload";
-		String realPath = request.getServletContext().getRealPath(filePath);
+		String realPath = request.getServletContext()
+								 .getRealPath("goods/upload");
 		System.out.println(realPath);
 		int fileSize = 1024*1024*5;
-		MultipartRequest multi=null;   //블럭밖에서도 쓸라면 선언을 블럭밖에다가 해라
+		MultipartRequest multi = null;
 		HttpSession session = request.getSession();
-		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		AuthInfo authInfo = 
+				(AuthInfo)session.getAttribute("authInfo");
 		String emp_no = authInfo.getGrade();
 		String storeFileName1;
 		String storeFileName2;
 		String storeFileName3;
 		String images="";
 		try {
-			 multi = new MultipartRequest(request, realPath, fileSize, "utf-8", new DefaultFileRenamePolicy());
-			 storeFileName1 = multi.getFilesystemName("prodImage1");
-			 storeFileName2 = multi.getFilesystemName("prodImage2");
-			 storeFileName3 = multi.getFilesystemName("prodImage3");
-			 images = storeFileName1 + "," + storeFileName2 + "," + storeFileName3;
- 		} catch (IOException e) {
+			// MultipartRequest가 실행이될 때 파일 저장
+			multi =	new MultipartRequest(request, realPath, fileSize,"utf-8",new DefaultFileRenamePolicy());
+			// 저장된 파일명 가져오기
+			storeFileName1 = multi.getFilesystemName("prodImage1");
+			storeFileName2 = multi.getFilesystemName("prodImage2");
+			storeFileName3 = multi.getFilesystemName("prodImage3");
+			// 저장된 파일명 연결
+			images = storeFileName1+","+storeFileName2+","+storeFileName3;
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		ProductDTO dto = new ProductDTO();
@@ -40,11 +45,12 @@ public class GoodsJoinPage {
 		dto.setProdCapacity(multi.getParameter("prodCapacity"));
 		dto.setProdDelFee(multi.getParameter("prodDelFee"));
 		dto.setProdDetail(multi.getParameter("prodDetail"));
+		/// 연결된 파일명을 dto에 저장
 		dto.setProdImage(images);
 		dto.setProdName(multi.getParameter("prodName"));
-		dto.setProdSupplyer(multi.getParameter("prodSupplyer"));
 		dto.setProdNum(multi.getParameter("goodsNum"));
-		dto.setProdPrice(Integer.parseInt((multi.getParameter("prodPrice"))));
+		dto.setProdPrice(Integer.parseInt(multi.getParameter("prodPrice")));
+		dto.setProdSupplyer(multi.getParameter("prodSupplyer"));
 		dto.setRecommend(multi.getParameter("recommend"));
 		dto.setCtgr(multi.getParameter("ctgr"));
 		GoodsDAO dao = new GoodsDAO();

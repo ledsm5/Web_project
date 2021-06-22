@@ -21,7 +21,7 @@ function goodsCartAdd(prodNum){
 <p><p>
 <form action="#" name="frm" method="post">
 <input type="hidden" name="prodNum" value="${dto.prodNum }"/>
-	${dto.ctgr }의${dto.prodName } 상품설명입니다.
+	${dto.ctgr }의  ${dto.prodName } 상품설명입니다.
 	<table width="800" align="center" border=1>
 		<tr><td rowspan="5">
 			<img height ="300" src="goods/upload/${dto.prodImage.split(',') [0] }">	

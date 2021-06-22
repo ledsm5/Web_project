@@ -58,6 +58,39 @@ public class GoodsController extends  HttpServlet implements Servlet{
 			cartList.cartList(request);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("goods/goodsCart.jsp");
 			dispatcher.forward(request, response);
+		}else if(command.equals("/goodsCartQtyDown.gd")) {
+			GoodsCartQtyDownPage action = new GoodsCartQtyDownPage();
+			action.cartQtyDown(request);
+			response.sendRedirect("goodsCartList.gd");
+		}else if(command.equals("/cartProdDel.gd")) {
+			GoodsCartProdDel action = new GoodsCartProdDel();
+			action.cartProdDelAction(request);
+			response.sendRedirect("goodsCartList.gd");
+		}else if(command.equals("/goodsBuy.gd")) {
+			GoodsBuyPage action = new GoodsBuyPage();
+			action.goodsBuyAction(request);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("goods/goodsOrderSheet.jsp");
+			dispatcher.forward(request, response);
+		}else if(command.equals("/goodsOrder.gd")) {
+			GoodsOrderPage action = new GoodsOrderPage();
+			String [] purchaseNum = action.goodsOrderAction(request).split(",");
+			response.sendRedirect("paymentOk.gd?purchaseNum=" + purchaseNum[0] + "&purchaseTotPrice=" + purchaseNum[1] );
+		}else if(command.equals("/purchaseCon.gd")) {
+			PurchaseListConPage action = new PurchaseListConPage();
+			action.purchaseListAction(request);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("goods/purchaseCon.jsp");
+			dispatcher.forward(request, response);
+		}else if(command.equals("/paymentOk.gd")){
+			request.setAttribute("purchaseNum", request.getParameter("purchaseNum"));
+			request.setAttribute("purchaseTotPrice", request.getParameter("purchaseTotPrice"));
+			RequestDispatcher dispatcher = request.getRequestDispatcher("goods/payment.jsp");
+			dispatcher.forward(request, response);
+		}else if(command.equals("/doPayment.gd")) {
+			PaymentPage action = new PaymentPage();
+			action.payment(request);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("goods/buyFinished.jsp");
+			dispatcher.forward(request, response);
+			
 		}
 	}
 	

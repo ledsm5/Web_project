@@ -64,12 +64,10 @@
 				<td colspan=2>
 					<input type="submit" value="선수등록">
 					<input type="reset" value="취소">
-					<input type="button" value="홈으로" onclick="javascript:location.href='main.sm.">
+					<input type="button" value="홈으로" onclick="javascript:location.href='main.sm">
 				</td>
 			</tr>
-		</table>
-	
-	
+		</table>	
 	</form>
 </body>
 </html>

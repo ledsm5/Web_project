@@ -16,7 +16,7 @@ public class NoticeRegistAction {
 		
 		HttpSession session = request.getSession();
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
-		String empId = authInfo.getGrade();
+		String empId = authInfo.getUserId();
 		request.setAttribute("empId", empId);
 	}
 }
