@@ -58,4 +58,16 @@
 		<servlet-name>notice</servlet-name>
 		<url-pattern>*.nt</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>sales</servlet-name>
+		<servlet-class>controller.sales.SalesController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>sales</servlet-name>
+		<url-pattern>*.sl</url-pattern>
+	</servlet-mapping>
+	
+	
+	
 </web-app>

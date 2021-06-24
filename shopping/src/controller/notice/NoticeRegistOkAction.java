@@ -12,7 +12,7 @@ public class NoticeRegistOkAction {
 	public void ntcRegistOK(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
-		String empId = authInfo.getGrade();
+		String empId = authInfo.getUserId();
 		
 		NoticeDTO dto = new NoticeDTO();
 		dto.setEmployeeId(empId);

@@ -50,18 +50,19 @@ function goodsBuy(prodNum){
 			<a href="myPage.mem">마이페이지</a>
 			<a href="goodsCartList.gd"> 장바구니</a>
 			<a href="noticeMain.nt">공지사항</a>
-			<a href="purchaseCon.gd">주문확인</a>
+			<a href="purchaseCon.gd">주문확인	</a>
 	</c:if>
 	<c:if test="${authInfo.grade !=1 }">
-		<!-- 관리자 -->
-		<a href="goodsList.gd">상품등록</a>
-			<!-- 직원 -->
-			<c:if test="${authInfo.userId ==111 }">
+		<!-- 직원 -->
+			<a href="goodsList.gd">상품등록</a>
+			<a href="myPage.em">마이페이지</a> 
+			<a href="noticeMain.nt">공지사항</a>
+			<a href ="salesTable.sl">판매현황</a>
+			<!-- 관리자 -->
+		<c:if test="${authInfo.userId ==111 }">
 				<a href="empList.em">직원 리스트</a>
 				<a href="memList.mem">회원 리스트</a>
-				<a href ="logout.sm">로그아웃</a>
-			</c:if>
-				<a href="myPage.em">마이페이지</a> 
+		</c:if>
 	</c:if>
 	<a href ="logout.sm"> 로그아웃 </a>
 </c:if>

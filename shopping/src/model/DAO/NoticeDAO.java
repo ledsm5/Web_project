@@ -23,9 +23,8 @@ public class NoticeDAO extends DataBaseInfo {
 			pstmt.setString(6, dto.getNoticeCount());
 			pstmt.setString(7, dto.getEmployeeId());
 			
-//			int i= pstmt.executeQuery();    ? ? ? ? ?
-			rs = pstmt.executeQuery();
-			System.out.println( rs + "개행이 저장되었습니다");
+			int i = pstmt.executeUpdate();
+			System.out.println( i + "개행이 저장되었습니다");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

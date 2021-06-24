@@ -29,7 +29,7 @@ public class MemberDAO {
 	public static void getConnect() {
 		try {
 			Class.forName(jdbcDriver);
-			conn = DriverManager.getConnection(jdbcUrl,"board","oracle");
+			conn = DriverManager.getConnection(jdbcUrl,"zero","oracle");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

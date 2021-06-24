@@ -11,12 +11,16 @@ import model.DTO.OrderList;
 
 public class PurchaseListConPage {
 	public void purchaseListAction(HttpServletRequest request) {
+		
 		HttpSession session = request.getSession();
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
-		String memId= authInfo.getUserId();
+		String memId = authInfo.getUserId();
 		GoodsDAO dao = new GoodsDAO();
 		List<OrderList> list = dao.orderList(memId);
 		request.setAttribute("list", list);
+		
+	
+
 		
 	}
 }
