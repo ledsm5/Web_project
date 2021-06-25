@@ -107,7 +107,19 @@ public class MemberController extends HttpServlet implements Servlet {
 			}else {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("member/pwChange.jsp");
 				dispatcher.forward(request, response);
-			}
+			}	
+//				============  아이디 찾기  ====================
+				
+				
+			
+		}else if(command.equals("/idSearch.mem")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("member/idSearchForm.jsp");
+			dispatcher.forward(request, response);
+		}else if(command.equals("/idSearchCompare.mem")) {
+			IdComparePage action =new IdComparePage();
+			action.idCompareAction(request);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("member/idCompare.jsp");
+			dispatcher.forward(request, response);
 		}
 		
 		

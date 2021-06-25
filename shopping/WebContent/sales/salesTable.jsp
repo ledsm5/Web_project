@@ -35,20 +35,19 @@
 				<c:if test="${dto.memName != null }"> ${dto.memName } </c:if> 	
 			</td>
 			<td>
-				<c:if test="${dto.prodName == null }"> 비회원 </c:if> 
-				<c:if test="${dto.prodName != null }"> ${dto.prodName } </c:if> 
+				 ${dto.prodName }
 			</td>
 			<td>
-				<c:if test="${dto.purchaseQty == null }"> 비회원 </c:if>
-				<c:if test="${dto.purchaseQty != null }"> ${dto.purchaseQty } </c:if>
+				 ${dto.purchaseQty } 
 			</td>
 			<td>
-			 	<c:if test="${dto.purchaseDate == null }"> 비회원 </c:if>
-			 	<c:if test="${dto.purchaseDate != null }"> ${dto.purchaseDate } </c:if>
+			 	 ${dto.purchaseDate } 
 			</td>
 			<td>
-				<c:if test="${dto.deliveryNum == null }"><a href="createDelivery.sl?purchaseNum=${dto.purchaseNum }">배송등록</a></c:if>
-				<c:if test="${dto.deliveryNum != null }"><a href="createDelivery.sl?purchaseNum=${dto.purchaseNum }">배송등록</a></c:if>			
+				<a href ="createDelivery.sl?purchaseNum=${dto.purchaseNum }">
+					<c:if test="${dto.deliveryNum == null }">배송등록</c:if>
+					<c:if test="${dto.deliveryNum != null }">배송수정</c:if>	
+				</a>		
 			</td>
 			</tr>
 		</c:forEach>
