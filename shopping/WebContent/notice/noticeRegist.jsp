@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="noticeRegistOk.nt" method="post" name="frm">
+	<form action="noticeRegistOk.nt" method="post" name="frm" enctype="multipart/form-data">
 	<table>
 		<tr><td>게시글 번호</td><td><input type ="text" name="noticeNo" readonly value="${noticeNo }"></td></tr>
 		<tr><td>게시글 제목</td><td><input type ="text" name="noticeSub" value="${noticeSub }" ></td></tr>

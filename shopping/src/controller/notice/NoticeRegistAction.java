@@ -14,7 +14,7 @@ public class NoticeRegistAction {
 		int noticeNo = dao.getNoticeNo();
 		request.setAttribute("noticeNo", noticeNo);
 		
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(); 
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 		String empId = authInfo.getUserId();
 		request.setAttribute("empId", empId);

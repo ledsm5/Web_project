@@ -6,6 +6,9 @@ public class AuthInfo {
 	String userPw;
 	String userEmail;
 	String grade;
+	
+	
+	
 	public String getUserId() {
 		return userId;
 	}

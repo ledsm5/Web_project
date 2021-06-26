@@ -16,7 +16,8 @@ body, html {height: 100%}
   background-image: url('images/msn.jpg');
   min-height: 100%;
   background-position: center;
-  background-size: 70%;
+  background-size: 33%;
+  margin-top:40px;
 }
 /* .header{
 	color:#4B0082;
@@ -50,7 +51,7 @@ function goodsBuy(prodNum){
   <div class="w3-display-bottomleft w3-container">
     <p class="w3-xlarge">EA sports</p>
     <p class="w3-large">01 online game</p>
-    <p>made by zeroone<a href="https://www.github.com/ledsm5" target="_blank">개발자 깃허브</a></p>
+    <p>made by zeroone<a href="https://www.github.com/ledsm5" target="_blank">  개발자 깃허브</a></p>
   </div>
 </div>
 
@@ -141,6 +142,21 @@ function goodsBuy(prodNum){
 			<a href="goodsCartList.gd"> 장바구니</a>
 			<a href="noticeMain.nt">공지사항</a>
 			<a href="purchaseCon.gd">주문확인	</a>
+			<a href ="logout.sm"> 로그아웃 </a>
+			<!-- 상품리스트 -->
+		<table align="center" border= "1">
+			<tr>
+			<c:forEach items ="${lists }" var="dto" varStatus="cnt">
+				<td><a href="javascript:goodsBuy('${dto.prodNum}')"><img width="200" height="200" src="goods/upload/${dto.prodImage.split(',')[0] }"><br>
+					${dto.prodName } <br>
+					가격:<fmt:formatNumber value="${dto.prodPrice }" type="currency"/> <br>
+				</a></td>
+				<c:if test="${cnt.count % 3 == 0}">
+				</tr><tr>
+				</c:if>
+			</c:forEach>
+			</tr>
+		</table>
 	</c:if>
 	<c:if test="${authInfo.grade !=1 }">
 		<!-- 직원 -->
@@ -148,34 +164,20 @@ function goodsBuy(prodNum){
 			<a href="myPage.em">마이페이지</a> 
 			<a href="noticeMain.nt">공지사항</a>
 			<a href ="salesTable.sl">판매현황</a>
+			<a href ="logout.sm"> 로그아웃 </a>
 			<!-- 관리자 -->
 		<c:if test="${authInfo.userId ==111 }">
 				<a href="empList.em">직원 리스트</a>
 				<a href="memList.mem">회원 리스트</a>
 		</c:if>
 	</c:if>
-	<a href ="logout.sm"> 로그아웃 </a>
 </c:if>
-<%-- 
-<!-- 상품리스트 -->
-<p></p>
-<table align="center" border= "1">
-	<tr>
-	<c:forEach items ="${lists }" var="dto" varStatus="cnt">
-		<td><a href="javascript:goodsBuy('${dto.prodNum}')"><img width="200" height="200" src="goods/upload/${dto.prodImage.split(',')[0] }"><br>
-			${dto.prodName } <br>
-			가격:<fmt:formatNumber value="${dto.prodPrice }" type="currency"/> <br>
-		</a></td>
-		<c:if test="${cnt.count % 3 == 0}">
-		</tr><tr>
-		</c:if>
-	</c:forEach>
-	</tr>
-</table>
+
+
 </body>
 </html>
 
- --%>
+
 
 
 

@@ -8,6 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.SendResult;
+
+import com.sun.corba.se.spi.protocol.RequestDispatcherDefault;
 
 public class NoticeController extends  HttpServlet implements Servlet{
 	public void doProcess(HttpServletRequest request , HttpServletResponse response) throws ServletException ,IOException{
@@ -28,6 +31,15 @@ public class NoticeController extends  HttpServlet implements Servlet{
 		}else if(command.equals("/noticeRegistOk.nt")) {
 			NoticeRegistOkAction action = new NoticeRegistOkAction();
 			action.ntcRegistOK(request);
+			response.sendRedirect("noticeMain.nt");
+		}else if(command.equals("/noticeDetail.nt")) {
+			NoticeDetailPrintPage action = new NoticeDetailPrintPage();
+			action.detailPrint(request);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("notice/ntcDetail.jsp");
+			dispatcher.forward(request, response);
+		}else if(command.equals("/noticeDelete.nt")) {
+			NoticeDeletePage action = new NoticeDeletePage();
+			action.noticeDeleteAction(request);
 			response.sendRedirect("noticeMain.nt");
 		}
 	
