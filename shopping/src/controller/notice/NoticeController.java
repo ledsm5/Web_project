@@ -41,6 +41,15 @@ public class NoticeController extends  HttpServlet implements Servlet{
 			NoticeDeletePage action = new NoticeDeletePage();
 			action.noticeDeleteAction(request);
 			response.sendRedirect("noticeMain.nt");
+		}else if(command.equals("/noticeModifyForm.nt")) {
+			NoticeDetailPrintPage action = new NoticeDetailPrintPage();
+			action.detailPrint(request);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("notice/ntcModify.jsp");
+			dispatcher.forward(request, response);			
+		}else if(command.equals("/noticeModify.nt")) {
+			NoticeModifyPage action = new NoticeModifyPage();
+			action.noitceModifyAction(request);
+			response.sendRedirect("noticeMain.nt");
 		}
 	
 	}

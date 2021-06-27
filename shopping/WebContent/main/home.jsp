@@ -9,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
 <style>
 body,h1,h5 {font-family: "Raleway", sans-serif}
 body, html {height: 100%}
@@ -19,6 +20,7 @@ body, html {height: 100%}
   background-size: 33%;
   margin-top:40px;
 }
+
 /* .header{
 	color:#4B0082;
 }
@@ -39,7 +41,7 @@ function goodsBuy(prodNum){
 </script>
 </head>
 <body>
-      <c:if test="${empty authInfo }">
+   
 
 <div class="bgimg w3-display-container w3-text-white">
   <div class="w3-display-middle w3-jumbo">
@@ -93,7 +95,7 @@ function goodsBuy(prodNum){
 			</tr>
 		</table>   
       </form>
-      </c:if>
+     
     </div>
   </div>
 </div>
@@ -132,46 +134,6 @@ function goodsBuy(prodNum){
 
  --%>
 
-
-
-<c:if test="${!empty authInfo }">
-<!-- 로그인 되었을 때 -->
-	<c:if test="${authInfo.grade ==1}">
-		<!-- 일반 회원 -->
-			<a href="myPage.mem">마이페이지</a>
-			<a href="goodsCartList.gd"> 장바구니</a>
-			<a href="noticeMain.nt">공지사항</a>
-			<a href="purchaseCon.gd">주문확인	</a>
-			<a href ="logout.sm"> 로그아웃 </a>
-			<!-- 상품리스트 -->
-		<table align="center" border= "1">
-			<tr>
-			<c:forEach items ="${lists }" var="dto" varStatus="cnt">
-				<td><a href="javascript:goodsBuy('${dto.prodNum}')"><img width="200" height="200" src="goods/upload/${dto.prodImage.split(',')[0] }"><br>
-					${dto.prodName } <br>
-					가격:<fmt:formatNumber value="${dto.prodPrice }" type="currency"/> <br>
-				</a></td>
-				<c:if test="${cnt.count % 3 == 0}">
-				</tr><tr>
-				</c:if>
-			</c:forEach>
-			</tr>
-		</table>
-	</c:if>
-	<c:if test="${authInfo.grade !=1 }">
-		<!-- 직원 -->
-			<a href="goodsList.gd">상품등록</a>
-			<a href="myPage.em">마이페이지</a> 
-			<a href="noticeMain.nt">공지사항</a>
-			<a href ="salesTable.sl">판매현황</a>
-			<a href ="logout.sm"> 로그아웃 </a>
-			<!-- 관리자 -->
-		<c:if test="${authInfo.userId ==111 }">
-				<a href="empList.em">직원 리스트</a>
-				<a href="memList.mem">회원 리스트</a>
-		</c:if>
-	</c:if>
-</c:if>
 
 
 </body>

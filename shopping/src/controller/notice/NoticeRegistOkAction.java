@@ -43,7 +43,6 @@ public class NoticeRegistOkAction {
 		dto.setNoticeCon(multi.getParameter("noticeCon"));
 		dto.setNoticeCount(multi.getParameter("noticeCount"));
 		dto.setNoticeDate(multi.getParameter("noticeDate"));
-		dto.setNoticeFile(multi.getParameter("noticeFile"));
 		dto.setNoticeNo(multi.getParameter("noticeNo"));
 		dto.setNoticeSub(multi.getParameter("noticeSub"));
 		dto.setNoticeFile(images);

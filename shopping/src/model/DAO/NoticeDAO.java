@@ -10,6 +10,32 @@ public class NoticeDAO extends DataBaseInfo {
 	final String COLUMNS ="NOTICE_NO , NOTICE_SUB, NOTICE_CON,NOTICE_DATE ,NOTICE_KIND,NOTICE_FILE, NOTICE_COUNT,EMPLOYEE_ID  ";
 	
 	
+	
+		
+	
+	
+	public void noticeModify(NoticeDTO dto) {
+		sql = " update notice set NOTICE_SUB = ? , NOTICE_CON= ? ,NOTICE_FILE=? "
+				+ " where notice_no = ? ";
+		getConnect();
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getNoticeSub());
+			pstmt.setString(2, dto.getNoticeCon());
+			pstmt.setString(3, dto.getNoticeFile());
+			pstmt.setString(4, dto.getNoticeNo());
+			int i = pstmt.executeUpdate();
+			System.out.println(i + "개가 수정되었습니다");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
+	}
+	
+	
 	public void noticeDelete(String noticeNo) {
 		sql = "delete from notice where notice_no = ?";
 		getConnect();

@@ -24,15 +24,16 @@ public class MainController extends HttpServlet implements Servlet{
 		/// context = /shopping
 		///           123456789
 		if(command.equals("/main.sm")) {
-			GoodsListPage action = new GoodsListPage();
-			action.goodsList(request);
-			RequestDispatcher dispatcher =
-					request.getRequestDispatcher("main/home.jsp");
+			
+			RequestDispatcher dispatcher =request.getRequestDispatcher("main/home.jsp");
 			dispatcher.forward(request, response);
 		}else if(command.equals("/login.sm")) {
 			LoginPage action = new LoginPage();
 			action.login(request, response);
-			response.sendRedirect("main.sm");
+			GoodsListPage action2 = new GoodsListPage();
+			action2.goodsList(request);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("main/index.jsp");
+			dispatcher.forward(request, response);
 		}else if(command.equals("/logout.sm")) {
 			Cookie cookie = new Cookie("autoLogin", "");
 			cookie.setPath("/");
