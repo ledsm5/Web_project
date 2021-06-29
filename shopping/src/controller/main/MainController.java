@@ -24,7 +24,6 @@ public class MainController extends HttpServlet implements Servlet{
 		/// context = /shopping
 		///           123456789
 		if(command.equals("/main.sm")) {
-			
 			RequestDispatcher dispatcher =request.getRequestDispatcher("main/home.jsp");
 			dispatcher.forward(request, response);
 		}else if(command.equals("/login.sm")) {

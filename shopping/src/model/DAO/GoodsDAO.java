@@ -20,21 +20,22 @@ public class GoodsDAO extends DataBaseInfo{
 	
 	public List<ProdReviewDTO> prodReviewSelect(String prodNum) {
 		List<ProdReviewDTO> list = new ArrayList<ProdReviewDTO>();  //여러개 받아오니까
-		sql = " select rpad(substr(p.mem_id,1,3),length(p.mem_id),'*') as mem_id, review_date, review_content, review_img "
-				+ " from purchase p, review r "
-				+ " where  p.purchase_num = r.purchase_num and r.prod_num = ? ";
-		
+		sql = " SELECT RPAD(SUBSTR(p.MEM_ID, 1, 3), LENGTH(p.MEM_ID), '*') MEM_ID, REVIEW_CONTENT, REVIEW_IMG, REVIEW_DATE "
+				+ " FROM MEMBER m, PURCHASE p, REVIEW r "
+				+ " WHERE p.PURCHASE_NUM = r.PURCHASE_NUM "
+				+ " AND r.PROD_NUM = ? ";
 		getConnect();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, prodNum);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
+
 				ProdReviewDTO dto = new ProdReviewDTO();
 				dto.setMemId(rs.getString(1));
 				dto.setReviewContent(rs.getString(2));
-				dto.setReviewDate(rs.getDate(4));
 				dto.setReviewImg(rs.getString(3));
+				dto.setReviewDate(rs.getDate(4));
 				list.add(dto);
 			}
 			

@@ -19,7 +19,9 @@
 			<tr><td>${dto.purchaseQty }</td><td colspan="2">${dto.purchasePrice } </td></tr>
 			<tr><td>받는사람</td><td>받는사람주소</td><td>받는사람연락처</td></tr>
 			<tr><td>${dto.receiverName }</td><td>${dto.purchaseAddr }</td><td>${dto.receiverPhone }</td></tr>
+			
 		</c:forEach>
 	</table>
+			
 </body>
 </html>

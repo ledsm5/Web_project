@@ -16,7 +16,8 @@ body, html {
   height: 100%;
   color: #777;
   line-height: 1.8;
-  overflow:y-scroll;
+ 
+
 }
 
 /* Create a Parallax Effect */
@@ -30,7 +31,7 @@ body, html {
 /* First image (Logo. Full height) */
 .bgimg-1 {
   background-image: url('images/tores.jpg');
-  margin-top: 30px;
+  margin-top: 45px;
   
   min-height: 100%;
 }
@@ -48,8 +49,29 @@ body, html {
 }
 
 .w3-wide {letter-spacing: 10px;}
-.w3-hover-opacity {cursor: pointer;}
+.w3-center w3-black w3-padding-64{
+	background-color: black;
+}
 
+.table1{
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: left;
+  line-height: 1.5;
+  border-top: none;
+  margin : 20px 10px;
+  opacity:1;
+
+  }
+.td1{
+  padding-right: 70px;
+  }
+.pd-list{
+	width:100%;
+	height:400px;
+	background-image: url("images/campnu.jpg");
+	opacity: 0.8;
+}
 /* Turn off parallax scrolling for tablets and phones */
 @media only screen and (max-device-width: 1600px) {
   .bgimg-1, .bgimg-2, .bgimg-3 {
@@ -58,6 +80,7 @@ body, html {
   }
 }
 </style>
+
 
 <script>
 function goodsBuy(prodNum){
@@ -69,7 +92,35 @@ function goodsBuy(prodNum){
 	}
 }
 
+//Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+/* Change style of navbar on scroll */
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+    }
+}
+/* Used to toggle the menu on small screens when clicking on the menu button */
+function toggleFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
 </script>
+
 </head>
 <body>
 
@@ -83,25 +134,26 @@ function goodsBuy(prodNum){
  
 
 
+
 <c:if test="${!empty authInfo }">
 <!-- 로그인 되었을 때 -->
 	<c:if test="${authInfo.grade ==1}">
 		<!-- 일반 회원 -->
-		<div class="w3-top">
   		<div class="w3-bar" id="myNavbar">
     		<a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
       			<i class="fa fa-bars"></i>
-   			</a>
-    		
+   			</a> 		
 		<!-- Navbar -->
-
 			<a href="myPage.mem" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> 마이페이지</a>
 			<a href="goodsCartList.gd" class="w3-bar-item w3-button">장바구니</a>
-			<a href="noticeMain.nt">공지사항</a>
+			<a href="noticeMain.nt" class="w3-bar-item w3-button">공지사항</a>
 			<a href="purchaseCon.gd" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> 주문확인</a>
-			<a href ="logout.sm"> 로그아웃 </a>
+			<a href ="logout.sm" class="w3-bar-item w3-button"> 로그아웃 </a>
 			<a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red"> <i class="fa fa-search"></i></a>
-			
+		</div>	
+		
+		
+		
 		<!-- 중간 제로원온라인 -->
 			<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
  				<div class="w3-display-middle" style="white-space:nowrap;">
@@ -109,35 +161,64 @@ function goodsBuy(prodNum){
   				</div>
 			</div>
 			
+			
+			
 		<!-- Container (About Section) -->
 			<div class="w3-content w3-container w3-padding-64" id="about">
 			  <h3 class="w3-center">게임 소개</h3>
-			  <p class="w3-center"><em>제로원 온라인</em></p>
-			  <p>본 게임은 실제 축구선수들을 이용해서 자신만의 개성있는 팀을 만드는 게임입니다. 상품으로 등록되어있는 선수들을 구매할수 있고, 구매한 선수는 스쿼드 전광판에서 
-			  	자신에게 필요한 포지션에 위치시켜 팀을 완성해보세요. </p>
+			  <p class="w3-center"><em>01 온라인</em></p>
+			  <p align="center">본 게임은 실제 축구선수들을 이용해서 자신만의 개성있는 팀을 만드는 게임입니다. 상품으로 등록되어있는 선수들을 구매할수 있고, 구매한 선수는 스쿼드 전광판에서 
+			  	자신에게 필요한 포지션에 위치시켜 팀을 완성해보세요. </p><br><br>
 			 <div class="w3-row">
 			    <div class="w3-col m6 w3-center w3-padding-large">
 			      <p><b><i class="fa fa-user w3-margin-right"></i>Today's player</b></p><br>
-			      <img src="images/neymar.jpg" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="Photo of Me" width="500" height="333">
+			      <img src="images/neymar.jpeg" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="Photo of Me" width="150" height="100">
+			      <img src="images/suarez.jpeg" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="Photo of Me" width="200" height="150">
 			  </div>	
 			  </div>
-		 
+		 	</div>
 			
 		<!-- 상품리스트 -->
-			<table align="center" border= "1">
-				<tr>
-				<c:forEach items ="${lists }" var="dto" varStatus="cnt">
-					<td><a href="javascript:goodsBuy('${dto.prodNum}')"><img width="200" height="200" src="goods/upload/${dto.prodImage.split(',')[0] }"><br>
-						${dto.prodName } <br>
-						가격:<fmt:formatNumber value="${dto.prodPrice }" type="currency"/> <br>
-					</a></td>
-					<c:if test="${cnt.count % 3 == 0}">
-					</tr><tr>
-					</c:if>
-				</c:forEach>
-				</tr>
-			</table>
-	</c:if>
+			<div class="pd-list">
+				<table  class="table1">
+					<tr>
+						<c:forEach items ="${lists }" var="dto" varStatus="cnt">
+							<td class="td1">
+								<a href="javascript:goodsBuy('${dto.prodNum}')"><img width="200" height="200" src="goods/upload/${dto.prodImage.split(',')[0] }"><br>
+								${dto.prodName } <br>
+								가격:<fmt:formatNumber value="${dto.prodPrice }" type="currency"/> <br>
+								</a>
+							</td>
+							
+							<c:if test="${cnt.count % 3 == 0}">
+						</tr>
+						<tr>
+							</c:if>
+						</c:forEach>
+					</tr>
+				</table>
+			</div>	
+		<!-- Footer -->
+			<footer class="w3-center w3-black w3-padding-64">
+				<a href="login.sm" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+				<div class="w3-xlarge w3-section">
+					<i class="fa fa-facebook-official w3-hover-opacity"></i> 
+					<i class="fa fa-instagram w3-hover-opacity"></i>
+					<i class="fa fa-snapchat w3-hover-opacity"></i>
+					<i class="fa fa-pinterest-p w3-hover-opacity"></i> 
+					<i class="fa fa-twitter w3-hover-opacity"></i>
+					<a href="https://www.github.com" target="_blank"><img src="images/git2.jpg" width="30" height="30"></a>
+				</div>
+				<p>
+					Developed by <a href="https://www.github.com/ledsm5"
+						title="W3.CSS" target="_blank" class="w3-hover-text-green">github.com/ledsm5</a>
+				</p>
+			</footer>
+		</c:if>
+	
+	
+	
+	<!-- 직원페이지 시작   -->
 	<c:if test="${authInfo.grade !=1 }">
 		<!-- 직원 -->
 			<a href="goodsList.gd">상품등록</a>
@@ -152,10 +233,6 @@ function goodsBuy(prodNum){
 		</c:if>
 	</c:if>
 </c:if>
-</div>
-</div>
-
-
 </body>
 </html>
 

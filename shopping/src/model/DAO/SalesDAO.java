@@ -16,23 +16,40 @@ public class SalesDAO extends DataBaseInfo{
 	
 	public void deliveryConfirm(DeliveryDTO dto) {
 		String delFree = " select sum(PROD_DEL_FEE) "
-					+" from purchase_list pl, products pr "
-					+" where pl.prod_num = pr.prod_num "
-					+" and pl.PURCHASE_NUM = ? " ;
-			sql = " merge into delivery d "
-				+"	using (select purchase_num from purchase "
-				+"	        where purchase_num = ? ) p "
-				+"	on (d.purchase_num = p.purchase_num) "
-				+"	When MATCHED THEN "
-				+"	update set DELIVERY_COM = ? ,DELIVERY_NUM=?, "
-				+"	            DELIVERY_EXP_DATE = ?, ARRIVAL_EXP_DATE=?, "
-				+"	            DELIVERY_DEL_FREE = (" + delFree + ")  "
-				+"	When not MATCHED THEN "
-				+"	insert (DELIVERY_COM,DELIVERY_NUM, DELIVERY_EXP_DATE, " 
-				+"	        ARRIVAL_EXP_DATE,DELIVERY_DEL_FREE,"
-				+ "			PURCHASE_NUM) " 
-				+"	values(?,?,?,?,("+ delFree + "),?) ";
-			getConnect();
+				+" from purchase_list pl, products pr "
+				+" where pl.prod_num = pr.prod_num "
+				+" and pl.PURCHASE_NUM = ? " ;
+		sql = "merge into delivery d"
+			+"	using (select purchase_num from purchase "
+			+"	        where purchase_num = ? ) p "
+			+"	on (d.purchase_num = p.purchase_num) "
+			+"	When MATCHED THEN "
+			+"	update set DELIVERY_COM = ? ,DELIVERY_NUM=?, "
+			+"	            DELIVERY_EXP_DATE = ?, ARRIVAL_EXP_DATE=?, "
+			+"	            DELIVERY_DEL_FREE = (" + delFree + ")  "
+			+"	When not MATCHED THEN "
+			+"	insert (DELIVERY_COM,DELIVERY_NUM, DELIVERY_EXP_DATE, " 
+			+"	        ARRIVAL_EXP_DATE,DELIVERY_DEL_FREE, "
+			+ "			PURCHASE_NUM) " 
+			+"	values(?,?,?,?,(" + delFree + "),?) ";
+		getConnect();
+		System.out.println(dto.getArrivalExpDate());
+		/*
+		 * String delFree = " select sum(PROD_DEL_FEE) "
+		 * +" from purchase_list pl, products pr " +" where pl.prod_num = pr.prod_num "
+		 * +" and pl.PURCHASE_NUM = ? " ; sql = " merge into delivery d "
+		 * +"	using (select purchase_num from purchase "
+		 * +"	        where purchase_num = ? ) p "
+		 * +"	on (d.purchase_num = p.purchase_num) " +"	When MATCHED THEN "
+		 * +"	update set DELIVERY_COM = ? ,DELIVERY_NUM=?, "
+		 * +"	            DELIVERY_EXP_DATE = ?, ARRIVAL_EXP_DATE=?, "
+		 * +"	            DELIVERY_DEL_FREE = (" + delFree + ")  "
+		 * +"	When not MATCHED THEN "
+		 * +"	insert (DELIVERY_COM,DELIVERY_NUM, DELIVERY_EXP_DATE, "
+		 * +"	        ARRIVAL_EXP_DATE,DELIVERY_DEL_FREE," +
+		 * "			PURCHASE_NUM) " +"	values(?,?,?,?,(" + delFree + "),?) ";
+		 * getConnect();
+		 */
 			
 			try {
 				pstmt = conn.prepareStatement(sql);

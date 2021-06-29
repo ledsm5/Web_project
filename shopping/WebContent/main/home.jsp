@@ -27,18 +27,6 @@ body, html {height: 100%}
  */
 </style>
 
-
-<script>
-function goodsBuy(prodNum){
-	if(${authInfo == null}){
-		alert("로그인을 하셔야 합니다.");
-		return false;
-	}else{
-		location.href='prodInfo.gd?prodNum='+prodNum;
-	}
-}
-
-</script>
 </head>
 <body>
    

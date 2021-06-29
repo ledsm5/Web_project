@@ -43,6 +43,8 @@
         </tr>
    		 </c:forEach>
 	</table>
+	<input type="button" value="이전" onclick="javascript:history.back();"/>
+	<input type="button"  value="홈으로" onclick="javascript:location.href='salesTable.sl'" />
 	
 </body>
 </html>

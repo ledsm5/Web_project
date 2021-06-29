@@ -18,6 +18,7 @@ public class LoginPage {
 		if(authInfo ==null) {
 			session.removeAttribute("pwFail");
 			session.setAttribute("userFail", "아이디 정보가 없습니다 ");
+			
 		}else{
 			session.removeAttribute("userFail");
 			if(userPw.equals(authInfo.getUserPw())) {

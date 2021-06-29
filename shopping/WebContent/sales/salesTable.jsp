@@ -18,7 +18,8 @@
     	아이디: <input type ="text" name ="memId"><br>
     		  <input type ="submit" value="검색"><br>
     </form>
-   <table>
+    <br>
+   <table border=1>
 	<tr>
 		<td>고객아이디</td><td>고객명</td><td>상품명</td><td>수량</td><td>판매일자</td>
 	</tr>
@@ -52,6 +53,9 @@
 			</tr>
 		</c:forEach>
 		</table>
+		<br>
+		<br>
+		<input type="button"  value="홈으로" onclick="javascript:location.href='login.sm'" />	
 	</body>
 </html>
 			

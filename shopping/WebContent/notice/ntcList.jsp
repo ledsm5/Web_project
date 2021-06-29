@@ -25,10 +25,12 @@
 			</c:forEach>
 				<tr>
 					<td colspan="4">
-					<!-- 직원전용 기능  -->
-						<input type="button" value="게시글 작성" onclick="javascript:location.href='noticeRegist.nt';">
 						<input type="button" value="홈으로" onclick="javascript:location.href='main.sm'"/> 
 						<input type="reset" value="이전" onclick="javascript:history.back();">
+					<!-- 직원전용 기능  -->
+					<c:if test="${authInfo.grade != 1}">
+						<input type="button" value="게시글 작성" onclick="javascript:location.href='noticeRegist.nt';">
+					</c:if>
 					</td>
 				</tr>
 	</table>	
